@@ -1,6 +1,5 @@
 import { Body, Get, Param, Post, Delete, Patch } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
-import { LoginDto } from './dto/login.dto';
 import { SignUpDto } from './dto/signup.dto';
 import { UsersService} from './users.service';
 
