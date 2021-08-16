@@ -1,21 +1,16 @@
-import { Column, Entity, PrimaryColumn } from "typeorm";
-import { Guid } from 'guid-typescript'
+import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('users')
 export class User {
-    @PrimaryColumn({type: 'uuid', name: 'id' })
+    @PrimaryGeneratedColumn('uuid')
     id: string;
 
-    @Column()
+    @Column({type: 'text'})
     name: string;
 
-    @Column()
+    @Column({type: 'text'})
     email: string;
 
-    @Column()
+    @Column({type: 'text'})
     password: string;
-
-    constructor() {
-        this.id = Guid.create().toString()
-}
 }

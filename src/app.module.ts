@@ -3,6 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { ProposalsModule } from './proposals/proposals.module';
 
 @Module({
   imports: [
@@ -16,7 +17,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       database: 'OmegaDB',
       autoLoadEntities: true,
       synchronize: true,
-    })],
+    }),
+    ProposalsModule
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
