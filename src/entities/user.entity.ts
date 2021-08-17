@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinTable, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Proposal } from "./proposal.entity";
 
 @Entity('users')
 export class User {
@@ -13,4 +14,8 @@ export class User {
 
     @Column({type: 'text'})
     password: string;
+
+    @JoinTable()
+    @OneToMany(() => Proposal, (proposal:Proposal) => proposal.user, {cascade:true})
+    proposals: Proposal[];
 }

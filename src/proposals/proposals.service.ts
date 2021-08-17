@@ -33,6 +33,7 @@ export class ProposalsService {
 
         //cálculo do valor total da proposta
         let valorKw = 10;
+        
         switch(proposal.supplytype){
             case "CONVENCIONAL": valorKw += 5;
             break;
@@ -62,7 +63,7 @@ export class ProposalsService {
         if(!proposal) {
             throw new NotFoundException(`Proposal of ID ${id} not found`);
         } else {
-        proposal.hired=true;
+        proposal.hired =true;
         return proposal;
         }
     }

@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { User } from "./user.entity";
 
 @Entity('proposals')
 export class Proposal {
@@ -23,4 +24,7 @@ export class Proposal {
     hired: boolean;
     @Column({type: 'double precision'})
     proposalvalue: number;
+
+    @ManyToOne(() => User, (user:User) => user.proposals)
+    user: User;
 }
