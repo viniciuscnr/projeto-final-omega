@@ -5,18 +5,19 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProposalsModule } from './proposals/proposals.module';
-import {} from './dbconfig/db.config'
+import {params} from './dbconfig/db.config'
+
 @Module({
   imports: [
     AuthModule,
     UsersModule,
     TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: process.env.DATABASE_HOST,
-      port: parseInt(process.env.DB_PORT),
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DATABASE_OMEGA,
+      type: 'postgres', 
+      host:  params.DATABASE_HOST,
+      port: parseInt(params.DB_PORT),
+      username: params.DB_USERNAME,
+      password: params.DB_PASSWORD,
+      database: params.OMEGA_DATABASE,
       autoLoadEntities: true,
       synchronize: true,
     }),

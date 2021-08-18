@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany ,ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./user.entity";
 
 @Entity('proposals')
@@ -9,7 +9,7 @@ export class Proposal {
     initialdate: Date;
     @Column({type: 'date'})
     finaldate: Date;
-    @Column({type: 'text'})
+    @Column({type: 'json'})
     charges:[{
         companyname: string,
         kwhconsumption: number
