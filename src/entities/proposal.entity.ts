@@ -25,6 +25,6 @@ export class Proposal {
     @Column({type: 'double precision'})
     proposalvalue: number;
 
-    @ManyToOne(() => User, (user:User) => user.proposals)
+    @ManyToOne(() => User, (user: User) => user.proposals)
     user: User;
 }

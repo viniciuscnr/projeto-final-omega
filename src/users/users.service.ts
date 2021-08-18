@@ -25,6 +25,16 @@ export class UsersService {
     }
 
     async signUp(signUpDto: SignUpDto) {
+        let verify = await this.getByEmail(signUpDto.email);
+        if(verify){
+            throw new BadRequestException(`O email fornecido já está registrado`)
+        }
+        if (signUpDto.name.length < 3){
+            throw new BadRequestException(`O nome fornecido é curto demais`)
+        }
+        if (signUpDto.password.length < 8){
+            throw new BadRequestException(`A senha fornecido é curta demais`)
+        }
         const user = this.userRepository.create(signUpDto);
         return this.userRepository.save(user);
     }

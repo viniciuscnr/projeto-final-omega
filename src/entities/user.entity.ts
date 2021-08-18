@@ -1,4 +1,4 @@
-import { Column, Entity, JoinTable, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Proposal } from "./proposal.entity";
 
 @Entity('users')
@@ -15,7 +15,7 @@ export class User {
     @Column({type: 'text'})
     password: string;
 
-    @JoinTable()
+    @JoinColumn({name: 'user_id'})
     @OneToMany(() => Proposal, (proposal:Proposal) => proposal.user, {cascade:true})
-    proposals: Proposal[];
+    proposals: Array<Proposal>;
 }
