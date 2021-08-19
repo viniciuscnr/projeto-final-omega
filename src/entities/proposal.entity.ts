@@ -9,7 +9,7 @@ export class Proposal {
     initialdate: Date;
     @Column({type: 'date'})
     finaldate: Date;
-    @Column({type: 'text'})
+    @Column({type: 'json', array: false, default: () => "'[]'"})
     charges:[{
         companyname: string,
         kwhconsumption: number
@@ -26,5 +26,5 @@ export class Proposal {
     proposalvalue: number;
 
     @ManyToOne(() => User, (user: User) => user.proposals)
-    user: User;
+    user: string;
 }

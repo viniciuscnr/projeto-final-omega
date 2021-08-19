@@ -1,8 +1,8 @@
 import { Delete, Param, Patch, UseGuards } from '@nestjs/common';
-import { Body } from '@nestjs/common';
+import { Body, Req } from '@nestjs/common';
 import { Get, Post } from '@nestjs/common';
 import { Controller } from '@nestjs/common';
-import { JwtAuthGuard } from 'src/auth/localandjwt/Jwt-auth.guard';
+import { JwtAuthGuard } from 'src/auth/localandjwt/jwt-auth.guard';
 import { CreateProposalDto } from './dto/createproposal.dto';
 import { ProposalsService } from './proposals.service';
 
@@ -10,24 +10,24 @@ import { ProposalsService } from './proposals.service';
 export class ProposalsController {
 
     constructor(private readonly proposalsService: ProposalsService) {}
-    //@UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard)
     @Get()
-    findAll() {
-        return this.proposalsService.findAll();
+    findAll(@Req() req) {
+        return this.proposalsService.findAll(req);
     }
-    //@UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard)
     @Post()
-    createProposal(@Body() proposal: CreateProposalDto) {
-        return this.proposalsService.createProposal(proposal);
+    createProposal(@Body() proposal: CreateProposalDto, @Req() req) {
+        return this.proposalsService.createProposal(proposal, req);
     }
-    //@UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard)
     @Patch(':id')
-    hireProposal(@Param('id') id: string) {
-        this.proposalsService.hireProposal(id);
+    hireProposal(@Param('id') id: string, @Req() req) {
+        this.proposalsService.hireProposal(id, req);
     }
-    //@UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard)
     @Delete(':id')
-    cancelProposal(@Param('id') id: string) {
-        return this.proposalsService.cancelProposal(id);
+    cancelProposal(@Param('id') id: string, @Req() req) {
+        return this.proposalsService.cancelProposal(id, req);
     }
 }
