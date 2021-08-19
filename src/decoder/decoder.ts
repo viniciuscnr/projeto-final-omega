@@ -11,10 +11,8 @@ export class Decoder{
     async decode(@Req() req) {
         const jwt = req.headers.authorization.replace('Bearer ', '');
         const payload = jwt_decode(jwt);
-        const userEmail = await payload[Object.keys(payload)[0]]; 
-        console.log(userEmail);
+        const userEmail = await payload[Object.keys(payload)[0]];
         const user: User = await this.usersService.getByEmail(userEmail);
-        console.log(user);
         return user.id
     }
 }
