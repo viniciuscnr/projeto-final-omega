@@ -74,9 +74,7 @@ export class ProposalsService {
     async hireProposal(id: string, @Req() req) {
         let proposal = await this.proposalRepository.findOne(id);
         let userId = await this.decoder.decode(req);
-        if (proposal.id != userId){
-            throw new BadRequestException(`Proposta de ID ${id} pertence a outro usuário`);
-        }
+        //if (proposal.user != userId) {throw new BadRequestException(`Proposta de ID ${id} pertence a outro usuário`)}
         if (!proposal) {
             throw new NotFoundException(`Proposta de ID ${id} não encontrada`);
         }
@@ -90,9 +88,7 @@ export class ProposalsService {
     async cancelProposal(id: string, @Req() req) {
         const proposal = await this.proposalRepository.findOne(id);
         let userId = await this.decoder.decode(req);
-        if (proposal.id != userId){
-            throw new BadRequestException(`Proposta de ID ${id} pertence a outro usuário`);
-        }
+        //if (proposal.user != userId){throw new BadRequestException(`Proposta de ID ${id} pertence a outro usuário`)}
         if (!proposal) {
             throw new NotFoundException(`Proposta de ID ${id} não encontrada`);
         }
