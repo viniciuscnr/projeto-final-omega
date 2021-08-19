@@ -3,6 +3,6 @@
   "sourceRoot": "src",
   "language": "ts",
   "compilerOptions": {
-    "plugins": []
+    "plugins": ["@nestjs/swagger/plugin"]
   }
 }

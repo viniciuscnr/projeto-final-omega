@@ -3,6 +3,7 @@ import { Req } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Decoder } from 'src/decoder/decoder';
 import { Proposal } from 'src/entities/proposal.entity';
+import { UsersService } from 'src/users/users.service';
 import { Repository } from 'typeorm';
 import { CreateProposalDto } from './dto/createproposal.dto';
 
@@ -11,7 +12,7 @@ export class ProposalsService {
 
     constructor(
         @InjectRepository(Proposal)
-        private readonly proposalRepository: Repository<Proposal>,private decoder: Decoder) {}
+        private readonly proposalRepository: Repository<Proposal>,private decoder: Decoder, private usersService: UsersService) {}
     
     async findAll(@Req() req) {
         let userId = await this.decoder.decode(req);
@@ -57,7 +58,7 @@ export class ProposalsService {
 
         //conexão com o usuário que realizou a proposta
         let userId = await this.decoder.decode(req);
-        proposal.user = userId
+        proposal.user = userId;
 
         //validação das datas fornecidas e cálculo do tempo da duração do contrato em horas
         let Start = new Date(proposal.initialdate);
@@ -74,13 +75,9 @@ export class ProposalsService {
     async hireProposal(id: string, @Req() req) {
         let proposal = await this.proposalRepository.findOne(id);
         let userId = await this.decoder.decode(req);
-        //if (proposal.user != userId) {throw new BadRequestException(`Proposta de ID ${id} pertence a outro usuário`)}
-        if (!proposal) {
-            throw new NotFoundException(`Proposta de ID ${id} não encontrada`);
-        }
-        if (proposal.hired == true){
-            throw new BadRequestException(`Proposta de ID ${id} já foi contratada`);
-        }
+        //if (proposal.user != userId){throw new BadRequestException(`Proposta de ID ${id} pertence a outro usuário`);}
+        if (!proposal) {throw new NotFoundException(`Proposta de ID ${id} não encontrada`);}
+        if (proposal.hired == true){throw new BadRequestException(`Proposta de ID ${id} já foi contratada`);}
         proposal.hired = true;
         return this.proposalRepository.save(proposal);
     }
@@ -88,13 +85,9 @@ export class ProposalsService {
     async cancelProposal(id: string, @Req() req) {
         const proposal = await this.proposalRepository.findOne(id);
         let userId = await this.decoder.decode(req);
-        //if (proposal.user != userId){throw new BadRequestException(`Proposta de ID ${id} pertence a outro usuário`)}
-        if (!proposal) {
-            throw new NotFoundException(`Proposta de ID ${id} não encontrada`);
-        }
-        if (proposal.hired == true){
-            throw new BadRequestException(`Proposta de ID ${id} já foi contratada`);
-        }
+        //if (proposal.user != userId){throw new BadRequestException(`Proposta de ID ${id} pertence a outro usuário`);}
+        if (!proposal) {throw new NotFoundException(`Proposta de ID ${id} não encontrada`);}
+        if (proposal.hired == true){throw new BadRequestException(`Proposta de ID ${id} já foi contratada`);}
         return this.proposalRepository.remove(proposal);
         
         }
