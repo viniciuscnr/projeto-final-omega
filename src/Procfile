@@ -1,4 +1,1 @@
-web: npm install
-web: npm i -g @nestjs/cli
-web: npm install source-map-support
 web: npm run start:dev

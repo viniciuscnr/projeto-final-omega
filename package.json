@@ -21,6 +21,7 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nestjs/cli": "^8.0.0",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/jwt": "^8.0.0",
@@ -44,6 +45,7 @@
     "swagger-ui": "^3.52.0",
     "swagger-ui-dist": "^4.0.0-beta.4",
     "swagger-ui-express": "^4.1.6",
+    "ts-node": "^10.0.0",
     "typeorm": "^0.2.37"
   },
   "devDependencies": {
