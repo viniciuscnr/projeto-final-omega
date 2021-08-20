@@ -57,8 +57,8 @@ export class ProposalsService {
         };
 
         //conexão com o usuário que realizou a proposta
-        let userId = await this.decoder.decode(req);
-        proposal.user = userId;
+        let user = await this.decoder.returnUser(req);
+        proposal.user = user;
 
         //validação das datas fornecidas e cálculo do tempo da duração do contrato em horas
         let Start = new Date(proposal.initialdate);
@@ -73,9 +73,11 @@ export class ProposalsService {
     }
 
     async hireProposal(id: string, @Req() req) {
-        let proposal = await this.proposalRepository.findOne(id);
+        let proposal = await this.proposalRepository.findOne(id, { relations: ["user"] });
         let userId = await this.decoder.decode(req);
-        //if (proposal.user != userId){throw new BadRequestException(`Proposta de ID ${id} pertence a outro usuário`);}
+        console.log(userId);
+        console.log(proposal.user.id);
+        if (proposal.user.id != userId){throw new BadRequestException(`Proposta de ID ${id} pertence a outro usuário`);}
         if (!proposal) {throw new NotFoundException(`Proposta de ID ${id} não encontrada`);}
         if (proposal.hired == true){throw new BadRequestException(`Proposta de ID ${id} já foi contratada`);}
         proposal.hired = true;
@@ -83,12 +85,11 @@ export class ProposalsService {
     }
     
     async cancelProposal(id: string, @Req() req) {
-        const proposal = await this.proposalRepository.findOne(id);
+        let proposal = await this.proposalRepository.findOne(id, { relations: ["user"] });
         let userId = await this.decoder.decode(req);
-        //if (proposal.user != userId){throw new BadRequestException(`Proposta de ID ${id} pertence a outro usuário`);}
+        if (proposal.user.id != userId){throw new BadRequestException(`Proposta de ID ${id} pertence a outro usuário`);}
         if (!proposal) {throw new NotFoundException(`Proposta de ID ${id} não encontrada`);}
         if (proposal.hired == true){throw new BadRequestException(`Proposta de ID ${id} já foi contratada`);}
         return this.proposalRepository.remove(proposal);
-        
         }
 }

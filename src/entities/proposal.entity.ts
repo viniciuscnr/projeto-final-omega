@@ -26,5 +26,5 @@ export class Proposal {
     proposalvalue: number;
 
     @ManyToOne(() => User, (user: User) => user.proposals)
-    user: string;
+    user: User;
 }

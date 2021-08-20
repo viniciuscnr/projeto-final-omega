@@ -15,4 +15,11 @@ export class Decoder{
         const user: User = await this.usersService.getByEmail(userEmail);
         return user.id
     }
+    async returnUser(@Req() req) {
+        const jwt = req.headers.authorization.replace('Bearer ', '');
+        const payload = jwt_decode(jwt);
+        const userEmail = await payload[Object.keys(payload)[0]]; 
+        const user: User = await this.usersService.getByEmail(userEmail);
+        return user;
+    }
 }

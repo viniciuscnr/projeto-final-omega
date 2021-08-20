@@ -23,7 +23,7 @@ export class ProposalsController {
     @UseGuards(JwtAuthGuard)
     @Patch(':id')
     hireProposal(@Param('id') id: string, @Req() req) {
-        this.proposalsService.hireProposal(id, req);
+        return this.proposalsService.hireProposal(id, req);
     }
     @UseGuards(JwtAuthGuard)
     @Delete(':id')
