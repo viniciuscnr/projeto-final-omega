@@ -14,6 +14,7 @@ import { ProposalsModule } from './proposals/proposals.module';
     //TypeOrmModule.forRoot({type: 'postgres', host: 'localhost', port: 5432, username: 'postgres', password: 'admin', database: 'OmegaDB', autoLoadEntities: true, synchronize: true}),
     //conexão com AWS
     TypeOrmModule.forRoot({type: 'postgres', host: 'omegadb.c2qdj1boddoe.us-east-2.rds.amazonaws.com', port: 5432, username: "omega_admin", password: '3n1L1tq2yVJmZKPJHgEK', database: 'OmegaDB', autoLoadEntities: true, synchronize: true}),
+    //conexão com AWS pelo Heroku
     ProposalsModule
   ],
   controllers: [AppController],
