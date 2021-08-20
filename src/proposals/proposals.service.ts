@@ -68,6 +68,11 @@ export class ProposalsService {
         } else {
         let duration = (End.valueOf() / 3600000) - (Start.valueOf() / 3600000);
         proposal.proposalvalue = (Number(proposal.totalconsumption) * valorKw * duration);
+        if(duration > 26280 && duration <= 35040){proposal.proposalvalue *= 0.95};
+        if(duration > 35040 && duration <= 43800){proposal.proposalvalue *= 0.90};
+        if(duration > 43800 && duration <= 52560){proposal.proposalvalue *= 0.85};
+        if(duration > 52560){proposal.proposalvalue *= 0.80};
+
         return this.proposalRepository.save(proposal);
         }
     }
