@@ -40,12 +40,13 @@ Criação de classes utilitárias para integração do front-end com o back-end.
 #### Filipe Lima
 Criação da interface da aplicação;<br/>
 Criação do dashboard;<br/>
-Criação dos componentes de login (front-end);<br/>
-Criação do cadastro (front-end);<br/>
+Criação dos componentes de login e cadastro (front-end);<br/>
 Criação dos modais;<br/>
 Criação da Home;<br/>
 Listagem das propostas (front-end);<br/>
-Criação dos forms (front-end).
+Criação dos forms (front-end);<br/>
+Configuração do Axios no front-end;<br/>
+Realização do deploy do front-end no Heroku.
 
 #### Vinícius Rebouças
 Cadastro, login e manipulação de usuários (back-end);<br/>
