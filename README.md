@@ -59,3 +59,6 @@ Realização do deploy da API no Heroku.
 
 ## Opcionais
 Os opcionais de extensão de período (oferecimento de benefício de preço de acordo com a extensão do período de uma proposta) e a responsividade em dispositivos móveis foram cumpridos.
+
+## Repositório com o front-end
+https://github.com/filipemsl/omega-tech-frontend
