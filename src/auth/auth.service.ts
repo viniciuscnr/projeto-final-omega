@@ -1,5 +1,5 @@
 import { UsersService } from 'src/users/users.service';
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
@@ -17,9 +17,12 @@ async validateUser(email: string, password: string) {
 }
 
 async login(user: any) {
-    const payload = { email: user.email, sub: user.id };
-    return {
-    access_token: this.jwtService.sign(payload),
-    };
-}
+    let result = await this.usersService.getByEmail(user.email)
+    if(result){
+        const payload = { email: result.email, sub: result.id };
+        return {
+            access_token: this.jwtService.sign(payload)}}
+            else{
+                return {"message":"erro de credenciais"}}
+            }
 }
