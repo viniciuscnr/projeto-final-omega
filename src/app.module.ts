@@ -13,9 +13,9 @@ import { ProposalsModule } from './proposals/proposals.module';
     //conexão com localhost
     //TypeOrmModule.forRoot({type: 'postgres', host: 'localhost', port: 5432, username: 'postgres', password: 'admin', database: 'OmegaDB', autoLoadEntities: true, synchronize: true}),
     //conexão com AWS
-    //TypeOrmModule.forRoot({type: 'postgres', host: 'omegadb.c2qdj1boddoe.us-east-2.rds.amazonaws.com', port: 5432, username: "omega_admin", password: '3n1L1tq2yVJmZKPJHgEK', database: 'OmegaDB', autoLoadEntities: true, synchronize: true}),
+    TypeOrmModule.forRoot({type: 'postgres', host: 'omegadb.c2qdj1boddoe.us-east-2.rds.amazonaws.com', port: 5432, username: "omega_admin", password: '3n1L1tq2yVJmZKPJHgEK', database: 'OmegaDB', autoLoadEntities: true, synchronize: true}),
     //conexão com AWS pelo Heroku
-    TypeOrmModule.forRoot({type: 'postgres', host: process.env.DATABASE_HOST, port: parseInt(process.env.DB_PORT, 10), username: process.env.DB_USERNAME, password: process.env.DB_PASSWORD, database: process.env.DATABASE, autoLoadEntities: true, synchronize: true}),
+    //TypeOrmModule.forRoot({type: 'postgres', host: process.env.DATABASE_HOST, port: parseInt(process.env.DB_PORT, 10), username: process.env.DB_USERNAME, password: process.env.DB_PASSWORD, database: process.env.DATABASE, autoLoadEntities: true, synchronize: true}),
     ProposalsModule
   ],
   controllers: [AppController],

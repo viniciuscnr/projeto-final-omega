@@ -17,6 +17,7 @@ export class UsersService {
 
     async searchById(id:string) {
         const user = await this.userRepository.findOne(id);
+        console.log(user)
         if (!user) {
             throw new NotFoundException(`User of ID ${id} not found`);
         } else {
@@ -33,7 +34,7 @@ export class UsersService {
             throw new BadRequestException(`O nome fornecido é curto demais`)
         }
         if (signUpDto.password.length < 8){
-            throw new BadRequestException(`A senha fornecido é curta demais`)
+            throw new BadRequestException(`A senha fornecida é curta demais`)
         }
         const user = this.userRepository.create(signUpDto);
         return this.userRepository.save(user);

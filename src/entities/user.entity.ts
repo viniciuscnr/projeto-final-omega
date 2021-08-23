@@ -12,7 +12,7 @@ export class User {
     @Column({type: 'text'})
     email: string;
 
-    @Column({type: 'text', select: false})
+    @Column({type: 'text'})
     password: string;
 
     @JoinColumn({name: 'user_id'})
