@@ -35,6 +35,7 @@ Feita através da biblioteca Axios.
 #### Homero Galvão
 Configuração da base de dados na AWS;<br/>
 Configuração das variáveis de ambiente da API no Heroku;<br/>
+Configuração do método de login para evitar retorno de token para credenciais vazias;<br/>
 Criação de classes utilitárias para integração do front-end com o back-end.
 
 #### Filipe Lima
